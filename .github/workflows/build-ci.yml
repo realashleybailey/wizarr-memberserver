@@ -3,7 +3,7 @@ name: Docker Build and Push Beta
 on:
     push:
         branches:
-            - "master"
+            - "main"
     workflow_dispatch: {}
 
 permissions:
@@ -39,6 +39,10 @@ jobs:
             # Checkout the repo
             - name: Checkout
               uses: actions/checkout@v4
+              with:
+                  repository: realashleybailey/wizarr-memberserver
+                  ref: main
+                  token: ${{ secrets.GITHUB_TOKEN }}
 
             # Get the Metadata from the Docker Image
             - name: Docker meta
