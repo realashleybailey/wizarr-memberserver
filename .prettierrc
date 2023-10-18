@@ -1,14 +1,9 @@
 {
-    "tabWidth": 2,
+    "printWidth": 10000,
+    "tabWidth": 4,
+    "useTabs": false,
     "semi": true,
-    "printWidth": 150,
-    "bracketSpacing": true,
-    "arrowParens": "always",
-    "insertPragma": false,
-    "proseWrap": "preserve",
-    "quoteProps": "as-needed",
-    "requirePragma": false,
-    "singleQuote": true,
-    "trailingComma": "all",
-    "useTabs": false
+    "singleQuote": false,
+    "doubleQuote": true,
+    "singleAttributePerLine": false
 }

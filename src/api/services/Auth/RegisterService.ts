@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
 import { UserRepository } from '@api/repositories/Users/UserRepository';
 import { InjectRepository } from 'typeorm-typedi-extensions';
-import { EventDispatcher, EventDispatcherInterface } from '@base/decorators/EventDispatcher';
+// import { EventDispatcher, EventDispatcherInterface } from '@base/decorators/EventDispatcher';
 import { AuthService } from '@base/infrastructure/services/auth/AuthService';
 import { InvitationRepository } from '@base/api/repositories/Invitations/InvitationRepository';
 import { RegisterRequest } from '@base/api/requests/Auth/RegisterRequest';
@@ -12,7 +12,7 @@ export class RegisterService {
   constructor(
     @InjectRepository() private userRepository: UserRepository,
     @InjectRepository() private invitationRepository: InvitationRepository,
-    @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
+    // @EventDispatcher() private eventDispatcher: EventDispatcherInterface,
     private authService: AuthService,
   ) {
     //
@@ -32,7 +32,7 @@ export class RegisterService {
       relations: ['role'],
     });
 
-    this.eventDispatcher.dispatch('onUserRegister', user);
+    // this.eventDispatcher.dispatch('onUserRegister', user);
 
     this.invitationRepository.update(invite.id, { used: true, user_id: user.id });
 

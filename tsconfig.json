@@ -15,6 +15,9 @@
             "@base/*": [
                 "src/*"
             ],
+            "@config/*": [
+                "src/config/*"
+            ],
             "@api/*": [
                 "src/api/*"
             ]

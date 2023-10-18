@@ -9,14 +9,14 @@ import { getMetadataArgsStorage, useContainer as routingControllersUseContainer,
 import { useContainer as socketUseContainer, useSocketServer } from 'socket-controllers';
 
 import { Container } from 'typedi';
-import { appConfig } from '@base/config/app';
+import { appConfig } from './config/app';
 import bodyParser from 'body-parser';
 import { buildSchema } from 'type-graphql';
 import { Container as containerTypeorm } from 'typeorm-typedi-extensions';
 import express from 'express';
 import { fixModuleAlias } from './utils/fix-module-alias';
-import { loadEventDispatcher } from '@base/utils/load-event-dispatcher';
-import { loadHelmet } from '@base/utils/load-helmet';
+import { loadEventDispatcher } from './utils/load-event-dispatcher';
+import { loadHelmet } from './utils/load-helmet';
 import { routingControllersToSpec } from 'routing-controllers-openapi';
 import { validationMetadatasToSchemas } from 'class-validator-jsonschema';
 
@@ -37,11 +37,11 @@ export class App {
     this.registerCronJobs();
     this.serveStaticFiles();
     this.setupMiddlewares();
-    // this.registerSocketControllers();
+    this.registerSocketControllers();
     this.registerRoutingControllers();
     this.registerDefaultHomePage();
     this.setupSwagger();
-    // await this.setupGraphQL();
+    await this.setupGraphQL();
     this.register404Page();
   }
 

@@ -8,7 +8,9 @@ export class InvitationRepository extends RepositoryBase<Invitation> {
     return await this.findOne({ code });
   }
   public async createInvitation(data: object) {
-    console.log(data);
+    let invitation = this.create(data);
+
+    return await this.save(invitation);
   }
   public async updateInvitation(invitation: Invitation, data: object) {
     console.log(invitation);
