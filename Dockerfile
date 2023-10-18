@@ -1,24 +1,23 @@
-# Common build stage
-FROM node:14.14.0-alpine3.12 as common-build-stage
+# Use an official Node.js runtime as the base image
+FROM --platform=linux/amd64 node:14.21.3
 
-COPY . ./app
+# Install dependencies
+RUN apt-get update && apt-get install -y libc6-dev build-essential && apt-get clean
 
+# Set the working directory inside the container
 WORKDIR /app
 
-RUN npm install
+# Copy package.json and package-lock.json to the working directory
+COPY . .
 
+# Install application dependencies using Yarn
+RUN npm install --force
+
+# Build the application
+RUN npm run build
+
+# Expose the port that the application will run on
 EXPOSE 3000
 
-# Dvelopment build stage
-FROM common-build-stage as development-build-stage
-
-ENV NODE_ENV development
-
-CMD ["npm", "run", "dev"]
-
-# Production build stage
-FROM common-build-stage as production-build-stage
-
-ENV NODE_ENV production
-
-CMD ["npm", "run", "start"]
+# Define the command to start your application
+CMD [ "npm", "run", "start" ]
