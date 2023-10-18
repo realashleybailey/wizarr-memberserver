@@ -13,11 +13,8 @@ COPY . .
 # Install application dependencies using Yarn
 RUN npm install --force
 
-# Build the application
-RUN npm run build
-
 # Expose the port that the application will run on
 EXPOSE 3000
 
 # Define the command to start your application
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "serve" ]

@@ -1,23 +1,23 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
-import { EntityBase } from '@base/infrastructure/abstracts/EntityBase';
-import { User } from '../Users/User';
+import { EntityBase } from "@base/infrastructure/abstracts/EntityBase";
+import { User } from "../Users/User";
 
-@Entity({ name: 'invitations' })
+@Entity({ name: "invitations" })
 export class Invitation extends EntityBase {
-  @PrimaryGeneratedColumn('increment')
-  id: number;
+    @PrimaryGeneratedColumn("increment")
+    id: number;
 
-  @Column()
-  code: string;
+    @Column()
+    code: string;
 
-  @Column()
-  used: boolean;
+    @Column()
+    used: boolean;
 
-  @Column()
-  user_id: number;
+    @Column()
+    user_id: number;
 
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+    @OneToOne(() => User)
+    @JoinColumn({ name: "user_id" })
+    user: User;
 }
